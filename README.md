@@ -5,7 +5,7 @@ After importing, the first thing I've got to do is to clean the dataset. For tha
 
 Now my aim is to classify the set of reviews into positive and negative ones.
 
-I'll try using all types of classifier that I know and try to determine which classifier will give the best results. Following are the performance metrics based on which I'll judge the model.
+I'll try using all types of classifier that I know and try to determine which classifier will give the best results. Following are the performance metrics based on which I'll judge the model. In this case, SVMs are giving out the best predicitions.
 
 Here, TP = # True Positives, TN = # True Negatives, FP = # False Positives, FN = # False Negatives
 
