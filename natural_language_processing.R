@@ -1,7 +1,7 @@
 # Natural Language Processing
 
 # Impoting the dataset
-dataset_original = read.delim("Restaurant_Reviews.tsv", quote = '', stringsAsFactors = FALSE)
+dataset_original = read.delim('Restaurant_Reviews.tsv', quote = '', stringsAsFactors = FALSE)
 
 # Cleaning the text
 library(tm)
@@ -27,38 +27,30 @@ corpus = tm_map(corpus, stripWhitespace)
 dtm = DocumentTermMatrix(corpus)
 # Keeping 99% of most frequent words in the sparse matrix 
 dtm = removeSparseTerms(dtm, 0.999)
-
 dataset = as.data.frame(as.matrix(dtm))
 # Added a new column Liked(the dependent variable) from the original
 # dataset to the current dataset
 dataset$Liked = dataset_original$Liked
-
+    
 # Encoding the target feature as factor 
 dataset$Liked = factor(dataset$Liked, levels = c(0, 1))
-
 # Splitting the dataset into the Training set and Test set
 # install.packages('caTools')
-library(caTools)
+#library(caTools)
 set.seed(123)
 split = sample.split(dataset$Liked, SplitRatio = 0.80)
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
 
-library(randomForest)
-set.seed(123)
-classifier = randomForest(x = training_set[-690],
+#library(randomForest)
+set.seed(123)s
+classifier = randomForest(x = training_set[-692],
                           y = training_set$Liked,
-                          ntree = 10)
+                          ntree = 100)
 
 # Predicting the Test set results
-y_pred = predict(classifier, newdata = test_set[-690])
+y_pred = predict(classifier, newdata = test_set[-692])
 
 # Making the Confusion Matrix
-cm = table(test_set[, 690], y_pred)
-
-
-# 
-
-
-
-    
+cm = table(test_set[, 692], y_pred)
+   
